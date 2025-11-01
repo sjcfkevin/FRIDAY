@@ -3879,6 +3879,398 @@
             background: rgba(255, 107, 107, 0.15);
         }
 
+        /* Stock Analysis Modal */
+        .stock-analysis-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.2s ease;
+        }
+
+        .stock-analysis-modal.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .analysis-modal-content {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            width: 90%;
+            max-width: 1400px;
+            height: 85vh;
+            max-height: 900px;
+            overflow: hidden;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
+            display: flex;
+            flex-direction: column;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .analysis-modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 24px 32px;
+            border-bottom: 1px solid var(--border-color);
+            background: var(--bg-secondary);
+        }
+
+        .analysis-header-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .analysis-stock-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            object-fit: contain;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 8px;
+        }
+
+        .analysis-stock-info h2 {
+            font-size: 24px;
+            font-weight: 800;
+            margin: 0 0 4px 0;
+            letter-spacing: -0.5px;
+        }
+
+        .analysis-stock-price {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+        }
+
+        .analysis-price-value {
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        .analysis-price-change {
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        .analysis-price-change.positive {
+            color: var(--accent-green);
+            background: rgba(0, 217, 163, 0.15);
+        }
+
+        .analysis-price-change.negative {
+            color: var(--accent-red);
+            background: rgba(255, 107, 107, 0.15);
+        }
+
+        .analysis-header-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .analysis-timestamp {
+            font-size: 12px;
+            color: var(--text-tertiary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .analysis-close-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .analysis-close-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--border-hover);
+        }
+
+        .analysis-modal-body {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .analysis-left-panel {
+            width: 50%;
+            padding: 32px;
+            border-right: 1px solid var(--border-color);
+            overflow-y: auto;
+        }
+
+        .analysis-charts {
+            margin-bottom: 32px;
+        }
+
+        .analysis-chart-container {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .analysis-chart-title {
+            font-size: 12px;
+            color: var(--text-tertiary);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+
+        .chart-placeholder {
+            width: 100%;
+            height: 180px;
+            background: var(--bg-card);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-tertiary);
+            font-size: 14px;
+        }
+
+        .analysis-metrics {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .analysis-metric-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .analysis-metric-item:last-child {
+            border-bottom: none;
+        }
+
+        .analysis-metric-label {
+            font-size: 13px;
+            color: var(--text-tertiary);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .analysis-metric-value {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .analysis-metric-value.positive {
+            color: #00D9A3;
+        }
+
+        .analysis-metric-value.negative {
+            color: #FF6B6B;
+        }
+
+        .analysis-right-panel {
+            width: 50%;
+            padding: 32px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .analysis-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0;
+        }
+
+        .analysis-tab {
+            padding: 12px 20px;
+            border: none;
+            background: transparent;
+            color: var(--text-tertiary);
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.2s ease;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .analysis-tab:hover {
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .analysis-tab.active {
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .analysis-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--text-primary);
+        }
+
+        .analysis-tab-content {
+            display: none;
+        }
+
+        .analysis-tab-content.active {
+            display: block;
+        }
+
+        .analysis-section {
+            margin-bottom: 32px;
+        }
+
+        .analysis-section-title {
+            font-size: 16px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -0.3px;
+        }
+
+        .analysis-section-content {
+            font-size: 14px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+
+        .analysis-sources {
+            margin-top: 32px;
+        }
+
+        .analysis-source-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            margin-bottom: 12px;
+            transition: all 0.2s ease;
+        }
+
+        .analysis-source-item:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-hover);
+        }
+
+        .analysis-source-left {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .analysis-source-name {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .analysis-source-desc {
+            font-size: 12px;
+            color: var(--text-tertiary);
+        }
+
+        .analysis-source-link {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            transition: all 0.2s ease;
+        }
+
+        .analysis-source-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .analysis-action-buttons {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            background: var(--bg-card);
+            padding: 12px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .analysis-action-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: all 0.2s ease;
+        }
+
+        .analysis-action-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Make watchlist items clickable */
+        .watchlist-item {
+            cursor: pointer;
+        }
+
         @media (max-width: 1200px) {
             .container {
                 flex-direction: column;
@@ -4110,13 +4502,13 @@
                             <span style="color: var(--text-tertiary); font-size: 12px;">Projection</span>
                             <strong id="forecastValue" style="font-size: 18px; letter-spacing: -0.3px;">$0</strong>
                         </div>
-                        <div style="color: var(--text-tertiary); font-size: 12px;" id="forecastDetail">—</div>
+                        <div style="color: var(--text-tertiary); font-size: 12px;" id="forecastDetail">?</div>
                     </div>
                 </div>
 
                 <!-- Goals Section -->
                 <div class="goals-section">
-                    <div class="section-title">💰 Savings Goals</div>
+                    <div class="section-title">?? Savings Goals</div>
                     
                     <div class="goal-card">
                         <div class="goal-header">
@@ -4128,7 +4520,7 @@
                         </div>
                         <div class="goal-details">
                             <span>$17,000 saved</span>
-                            <span>$8,000 to go • 23 days left</span>
+                            <span>$8,000 to go ? 23 days left</span>
                         </div>
                     </div>
 
@@ -4142,7 +4534,7 @@
                         </div>
                         <div class="goal-details">
                             <span>$84,000 saved</span>
-                            <span>$116,000 to go • 316 days left</span>
+                            <span>$116,000 to go ? 316 days left</span>
                         </div>
                     </div>
 
@@ -4156,14 +4548,14 @@
                         </div>
                         <div class="goal-details">
                             <span>$142,891 saved</span>
-                            <span>$857,109 to go • 15 years</span>
+                            <span>$857,109 to go ? 15 years</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- AI Projections -->
                 <div class="projections-section">
-                    <div class="section-title">🤖 AI Portfolio Projections</div>
+                    <div class="section-title">?? AI Portfolio Projections</div>
                     
                     <div class="projection-card">
                         <div class="projection-header">
@@ -4241,7 +4633,7 @@
                     <h1 class="page-title">Trading Signals</h1>
                 </div>
                 <div style="text-align: center; padding: 100px 20px; color: var(--text-secondary);">
-                    <div style="font-size: 64px; margin-bottom: 20px;">📊</div>
+                    <div style="font-size: 64px; margin-bottom: 20px;">??</div>
                     <h2 style="font-size: 28px; margin-bottom: 12px; color: var(--text-primary);">Advanced Trading Signals</h2>
                     <p style="font-size: 16px; margin-bottom: 24px;">Real-time AI-powered pattern detection and trade opportunities</p>
                     <p style="font-size: 14px; max-width: 600px; margin: 0 auto; line-height: 1.8;">
@@ -4258,7 +4650,7 @@
                     <h1 class="page-title">Markets Overview</h1>
                 </div>
                 <div style="text-align: center; padding: 100px 20px; color: var(--text-secondary);">
-                    <div style="font-size: 64px; margin-bottom: 20px;">🌍</div>
+                    <div style="font-size: 64px; margin-bottom: 20px;">??</div>
                     <h2 style="font-size: 28px; margin-bottom: 12px; color: var(--text-primary);">Global Markets</h2>
                     <p style="font-size: 16px; margin-bottom: 24px;">Real-time market data and sector performance</p>
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; max-width: 1000px; margin: 40px auto 0;">
@@ -4569,7 +4961,7 @@
                         <div id="holdingsList" class="holdings-list">
                         <!-- Holdings will be dynamically inserted here -->
                         <div class="empty-state">
-                            <div style="font-size: 48px; margin-bottom: 16px;">📊</div>
+                            <div style="font-size: 48px; margin-bottom: 16px;">??</div>
                             <h3>No holdings yet</h3>
                             <p>Add your first holding to start tracking your portfolio</p>
                             <button class="btn-primary" onclick="document.getElementById('addHoldingBtn').click()">Add Your First Holding</button>
@@ -4717,7 +5109,7 @@
                     <div class="advanced-analytics-content">
                         <!-- Risk Metrics -->
                         <div class="analytics-section frosted-card">
-                            <h2>📊 Risk Metrics</h2>
+                            <h2>?? Risk Metrics</h2>
                             <div class="risk-metrics-grid">
                                 <div class="risk-metric-card">
                                     <div class="risk-metric-label">Portfolio Beta</div>
@@ -4744,20 +5136,20 @@
 
                         <!-- Sector Breakdown -->
                         <div class="analytics-section frosted-card">
-                            <h2>🏭 Sector Allocation</h2>
+                            <h2>?? Sector Allocation</h2>
                             <div id="sectorBreakdown" class="sector-breakdown"></div>
                         </div>
 
                         <!-- Correlation Matrix -->
                         <div class="analytics-section frosted-card">
-                            <h2>🔗 Correlation Matrix</h2>
+                            <h2>?? Correlation Matrix</h2>
                             <p style="color: var(--text-secondary); margin-bottom: 20px; font-size: 14px;">Shows how your holdings move together. Values closer to 1 indicate high correlation.</p>
                             <div id="correlationMatrix" class="correlation-matrix"></div>
                         </div>
 
                         <!-- Performance Attribution -->
                         <div class="analytics-section frosted-card">
-                            <h2>💰 Performance Attribution</h2>
+                            <h2>?? Performance Attribution</h2>
                             <div id="performanceAttribution" class="attribution-list"></div>
                         </div>
                     </div>
@@ -4767,7 +5159,7 @@
                 <div id="portfolio-rebalancing-tab" class="portfolio-subtab">
                     <div class="rebalancing-content">
                         <div class="rebalancing-header frosted-card">
-                            <h2>⚖️ Portfolio Rebalancing Assistant</h2>
+                            <h2>?? Portfolio Rebalancing Assistant</h2>
                             <p style="color: var(--text-secondary);">Maintain your target allocation and optimize risk</p>
                         </div>
 
@@ -4819,7 +5211,7 @@
                 <div id="portfolio-ai-analysis-tab" class="portfolio-subtab">
                     <div class="ai-analysis-content">
                         <div class="ai-analysis-header frosted-card">
-                            <h2>🤖 AI Portfolio Analysis</h2>
+                            <h2>?? AI Portfolio Analysis</h2>
                             <p style="color: var(--text-secondary);">Comprehensive AI-driven insights about your portfolio</p>
                         </div>
 
@@ -4865,10 +5257,10 @@
                                 </div>
                                 <div class="ai-insight-content" id="aiRecommendations">
                                     <ul style="list-style: none; padding: 0;">
-                                        <li style="margin-bottom: 12px;">✓ Consider taking partial profits on NVDA given strong gains</li>
-                                        <li style="margin-bottom: 12px;">✓ Add defensive positions (utilities, consumer staples) for balance</li>
-                                        <li style="margin-bottom: 12px;">✓ Monitor GOOG for potential entry point if it continues declining</li>
-                                        <li>✓ Rebalance when any single holding exceeds 35% of portfolio</li>
+                                        <li style="margin-bottom: 12px;">? Consider taking partial profits on NVDA given strong gains</li>
+                                        <li style="margin-bottom: 12px;">? Add defensive positions (utilities, consumer staples) for balance</li>
+                                        <li style="margin-bottom: 12px;">? Monitor GOOG for potential entry point if it continues declining</li>
+                                        <li>? Rebalance when any single holding exceeds 35% of portfolio</li>
                         </ul>
                                 </div>
                             </div>
@@ -4887,13 +5279,13 @@
                     <div style="max-width: 600px; margin: 0 auto; text-align: left; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 32px;">
                         <h3 style="font-size: 18px; margin-bottom: 20px; color: var(--text-primary);">Features:</h3>
                         <ul style="list-style: none; padding: 0; font-size: 14px; line-height: 2;">
-                            <li>✓ AI-recommended trades with rationale</li>
-                            <li>✓ Pre-built investment strategies</li>
-                            <li>✓ Risk-adjusted opportunities</li>
-                            <li>✓ Thematic investment ideas</li>
-                            <li>✓ Long-term vs short-term plays</li>
-                            <li>✓ One-click portfolio allocation</li>
-                            <li>✓ Backtested performance data</li>
+                            <li>? AI-recommended trades with rationale</li>
+                            <li>? Pre-built investment strategies</li>
+                            <li>? Risk-adjusted opportunities</li>
+                            <li>? Thematic investment ideas</li>
+                            <li>? Long-term vs short-term plays</li>
+                            <li>? One-click portfolio allocation</li>
+                            <li>? Backtested performance data</li>
                         </ul>
                     </div>
                 </div>
@@ -4913,9 +5305,9 @@
 
                 <div class="news-grid">
                     <div class="news-card">
-                        <span class="news-badge">Macro • 2m ago</span>
+                        <span class="news-badge">Macro ? 2m ago</span>
                         <div class="news-headline">Fed signals slower pace of rate hikes as inflation cools</div>
-                        <div class="news-summary">Minutes show policymakers leaning toward a “measured” path with a bias to pause should labor data soften further. Futures price-in a 65% chance of cuts by Q3.</div>
+                        <div class="news-summary">Minutes show policymakers leaning toward a ?measured? path with a bias to pause should labor data soften further. Futures price-in a 65% chance of cuts by Q3.</div>
                         <div class="news-meta">
                             <span>Sentiment: Positive</span>
                             <span>Source: Bloomberg</span>
@@ -4923,7 +5315,7 @@
                     </div>
 
                     <div class="news-card">
-                        <span class="news-badge">Earnings • 8m ago</span>
+                        <span class="news-badge">Earnings ? 8m ago</span>
                         <div class="news-headline">NVIDIA tops expectations, hikes guidance on AI server demand</div>
                         <div class="news-summary">Data center revenue surged 61% QoQ with hyperscalers accelerating H100 deployments. Management projects FY25 gross margins above 74%.</div>
                         <div class="news-meta">
@@ -4933,7 +5325,7 @@
                     </div>
 
                     <div class="news-card">
-                        <span class="news-badge">Commodities • 12m ago</span>
+                        <span class="news-badge">Commodities ? 12m ago</span>
                         <div class="news-headline">WTI crude slides below $70 as OPEC compliance concerns rise</div>
                         <div class="news-summary">Reports indicate mixed adherence to production quotas while U.S. inventories build for a third week, pressuring energy equities and inflation breakevens.</div>
                         <div class="news-meta">
@@ -4943,9 +5335,9 @@
                     </div>
 
                     <div class="news-card">
-                        <span class="news-badge">Tech • 18m ago</span>
+                        <span class="news-badge">Tech ? 18m ago</span>
                         <div class="news-headline">Apple unveils on-device GenAI suite, partners with OpenAI</div>
-                        <div class="news-summary">The new “Apple Intelligence” framework integrates with Siri while preserving on-device privacy. Analysts expect higher iPhone upgrade intent this fall.</div>
+                        <div class="news-summary">The new ?Apple Intelligence? framework integrates with Siri while preserving on-device privacy. Analysts expect higher iPhone upgrade intent this fall.</div>
                         <div class="news-meta">
                             <span>Sentiment: Positive</span>
                             <span>Source: Wall Street Journal</span>
@@ -4985,7 +5377,7 @@
                         <div class="market-stat-grid">
                             <div class="market-stat"><span>Advance/Decline</span><strong>362 / 137</strong></div>
                             <div class="market-stat"><span>Avg Volume</span><strong>1.14B</strong></div>
-                            <div class="market-stat"><span>1W Range</span><strong>5,080 – 5,260</strong></div>
+                            <div class="market-stat"><span>1W Range</span><strong>5,080 ? 5,260</strong></div>
                             <div class="market-stat"><span>Put/Call</span><strong>0.78</strong></div>
                         </div>
                     </div>
@@ -5000,7 +5392,7 @@
                             <polyline points="0,18 15,14 30,20 45,16 60,22 75,28 90,24 105,18 120,26" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="3 4"/>
                         </svg>
                         <div class="market-stat-grid">
-                            <div class="market-stat"><span>Skew (25Δ)</span><strong>-1.6%</strong></div>
+                            <div class="market-stat"><span>Skew (25?)</span><strong>-1.6%</strong></div>
                             <div class="market-stat"><span>Realized 30d</span><strong>13.4%</strong></div>
                             <div class="market-stat"><span>VVIX</span><strong>93.5</strong></div>
                             <div class="market-stat"><span>Gamma Exposure</span><strong>$1.2B long</strong></div>
@@ -5054,7 +5446,7 @@
                                 <div class="signal-title">Breakout continuation detected</div>
                                 <div class="signal-desc">Price reclaimed 8-day EMA with expanding volume; AI confidence 87%.</div>
                             </div>
-                            <div class="signal-score">+2.6σ</div>
+                            <div class="signal-score">+2.6?</div>
                         </div>
                         <div class="signal-row">
                             <div class="signal-badge">MSFT</div>
@@ -5062,7 +5454,7 @@
                                 <div class="signal-title">Cloud momentum cooling</div>
                                 <div class="signal-desc">Azure bookings decelerating; insider selling uptick. Consider trimming.</div>
                             </div>
-                            <div class="signal-score">-1.1σ</div>
+                            <div class="signal-score">-1.1?</div>
                         </div>
                         <div class="signal-row">
                             <div class="signal-badge">XLE</div>
@@ -5070,7 +5462,7 @@
                                 <div class="signal-title">Energy capitulation watch</div>
                                 <div class="signal-desc">ETF breadth at 6-month lows while crude breaches 50DMA.</div>
                             </div>
-                            <div class="signal-score">-1.8σ</div>
+                            <div class="signal-score">-1.8?</div>
                         </div>
                         <div class="signal-row">
                             <div class="signal-badge">BTC</div>
@@ -5078,7 +5470,7 @@
                                 <div class="signal-title">On-chain accumulation</div>
                                 <div class="signal-desc">Long-term holders increasing exposure; funding rates reset.</div>
                             </div>
-                            <div class="signal-score">+1.4σ</div>
+                            <div class="signal-score">+1.4?</div>
                         </div>
                     </div>
 
@@ -5127,7 +5519,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td><strong>NVDA</strong> • AI Megacap</td>
+                                <td><strong>NVDA</strong> ? AI Megacap</td>
                                 <td>High (88%)</td>
                                 <td>$903</td>
                                 <td>$1,020</td>
@@ -5135,7 +5527,7 @@
                                 <td style="color:#6EE7B7; font-weight:600;">Active</td>
                             </tr>
                             <tr>
-                                <td><strong>TSLA</strong> • EV Momentum</td>
+                                <td><strong>TSLA</strong> ? EV Momentum</td>
                                 <td>Medium (62%)</td>
                                 <td>$181</td>
                                 <td>$214</td>
@@ -5143,7 +5535,7 @@
                                 <td style="color:#FACC15; font-weight:600;">Watching</td>
                             </tr>
                             <tr>
-                                <td><strong>ASML</strong> • Semi Equipment</td>
+                                <td><strong>ASML</strong> ? Semi Equipment</td>
                                 <td>High (81%)</td>
                                 <td>$954</td>
                                 <td>$1,070</td>
@@ -5151,7 +5543,7 @@
                                 <td style="color:#6EE7B7; font-weight:600;">Active</td>
                             </tr>
                             <tr>
-                                <td><strong>OXY</strong> • Energy Value</td>
+                                <td><strong>OXY</strong> ? Energy Value</td>
                                 <td>Low (48%)</td>
                                 <td>$60</td>
                                 <td>$68</td>
@@ -5260,13 +5652,13 @@
                     <div style="max-width: 600px; margin: 0 auto; text-align: left; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 32px;">
                         <h3 style="font-size: 18px; margin-bottom: 20px; color: var(--text-primary);">Features:</h3>
                         <ul style="list-style: none; padding: 0; font-size: 14px; line-height: 2;">
-                            <li>✓ Real-time pattern analysis</li>
-                            <li>✓ ELI5 + Technical explanations</li>
-                            <li>✓ Trade recommendations with reasoning</li>
-                            <li>✓ Historical performance data</li>
-                            <li>✓ Risk/reward ratios</li>
-                            <li>✓ Confidence scores</li>
-                            <li>✓ One-click execute trades</li>
+                            <li>? Real-time pattern analysis</li>
+                            <li>? ELI5 + Technical explanations</li>
+                            <li>? Trade recommendations with reasoning</li>
+                            <li>? Historical performance data</li>
+                            <li>? Risk/reward ratios</li>
+                            <li>? Confidence scores</li>
+                            <li>? One-click execute trades</li>
                         </ul>
                     </div>
                 </div>
@@ -5282,13 +5674,13 @@
                     <div style="max-width: 600px; margin: 0 auto; text-align: left; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 32px;">
                         <h3 style="font-size: 18px; margin-bottom: 20px; color: var(--text-primary);">Options:</h3>
                         <ul style="list-style: none; padding: 0; font-size: 14px; line-height: 2;">
-                            <li>✓ Connect broker (Alpaca, Interactive Brokers)</li>
-                            <li>✓ Risk limits and trading hours</li>
-                            <li>✓ Notification preferences</li>
-                            <li>✓ API keys management</li>
-                            <li>✓ Subscription and billing</li>
-                            <li>✓ Two-factor authentication</li>
-                            <li>✓ Export trade history</li>
+                            <li>? Connect broker (Alpaca, Interactive Brokers)</li>
+                            <li>? Risk limits and trading hours</li>
+                            <li>? Notification preferences</li>
+                            <li>? API keys management</li>
+                            <li>? Subscription and billing</li>
+                            <li>? Two-factor authentication</li>
+                            <li>? Export trade history</li>
                         </ul>
                     </div>
                 </div>
@@ -5302,8 +5694,8 @@
                     <div class="watchlist-title">My Watchlist</div>
                     <div class="tv-watchlist-toolbar frosted frosted-pill" style="display:flex; gap:4px;">
                         <button class="icon-btn" title="Add">+</button>
-                        <button class="icon-btn" title="Filter">⛃</button>
-                        <button class="icon-btn" title="Sort">☰</button>
+                        <button class="icon-btn" title="Filter">?</button>
+                        <button class="icon-btn" title="Sort">?</button>
                     </div>
                 </div>
                 
@@ -5369,8 +5761,8 @@
                     <div class="watchlist-title">Crypto Watchlist</div>
                     <div class="tv-watchlist-toolbar frosted frosted-pill" style="display:flex; gap:4px;">
                         <button class="icon-btn" title="Add">+</button>
-                        <button class="icon-btn" title="Filter">⛃</button>
-                        <button class="icon-btn" title="Sort">☰</button>
+                        <button class="icon-btn" title="Filter">?</button>
+                        <button class="icon-btn" title="Sort">?</button>
                     </div>
                 </div>
                 
@@ -5548,7 +5940,7 @@
             if (totalResults === 0) {
                 searchResults.innerHTML = `
                     <div class="search-empty">
-                        <div class="search-empty-icon">🔍</div>
+                        <div class="search-empty-icon">??</div>
                         <div>No results found</div>
                     </div>
                 `;
@@ -6004,7 +6396,7 @@
                 name: 'Chase Premier Checking',
                 institution: 'Chase',
                 type: 'Checking',
-                mask: '•••• 4521',
+                mask: '???? 4521',
                 status: 'Connected',
                 balance: 26000,
                 logo: 'https://logo.clearbit.com/chase.com'
@@ -6013,7 +6405,7 @@
                 name: 'Robinhood Brokerage',
                 institution: 'Robinhood',
                 type: 'Brokerage',
-                mask: '•••• 8842',
+                mask: '???? 8842',
                 status: 'Connected',
                 balance: 52340,
                 logo: 'https://logo.clearbit.com/robinhood.com'
@@ -6022,7 +6414,7 @@
                 name: 'Fidelity Roth IRA',
                 institution: 'Fidelity',
                 type: 'Retirement',
-                mask: '•••• 1024',
+                mask: '???? 1024',
                 status: 'Auto-sync',
                 balance: 34200,
                 logo: 'https://logo.clearbit.com/fidelity.com'
@@ -6031,7 +6423,7 @@
                 name: 'Charles Schwab Taxable',
                 institution: 'Schwab',
                 type: 'Brokerage',
-                mask: '•••• 7789',
+                mask: '???? 7789',
                 status: 'Connected',
                 balance: 30351.43,
                 logo: 'https://logo.clearbit.com/schwab.com'
@@ -6066,7 +6458,7 @@
                 <div class="accounts-summary frosted-card">
                     <div>
                         <div class="accounts-total-label">Total Linked Accounts</div>
-                        <div class="accounts-updated" id="accountsUpdated">Balances refreshed • --</div>
+                        <div class="accounts-updated" id="accountsUpdated">Balances refreshed ? --</div>
                     </div>
                     <div class="accounts-total-value" id="linkedAccountsTotal">$0.00</div>
                 </div>
@@ -6160,7 +6552,7 @@
             const updatedEl = document.getElementById('accountsUpdated');
             if (updatedEl) {
                 const now = new Date();
-                updatedEl.textContent = `Balances refreshed • ${now.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} ${now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}`;
+                updatedEl.textContent = `Balances refreshed ? ${now.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} ${now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}`;
             }
 
             const container = document.querySelector('.positions-container');
@@ -6810,7 +7202,7 @@
             if (holdings.length === 0) {
                 holdingsList.innerHTML = `
                     <div class="empty-state">
-                        <div style="font-size: 48px; margin-bottom: 16px;">📊</div>
+                        <div style="font-size: 48px; margin-bottom: 16px;">??</div>
                         <h3>No holdings yet</h3>
                         <p>Add your first holding to start tracking your portfolio</p>
                         <button class="btn-primary" onclick="document.getElementById('addHoldingBtn').click()">Add Your First Holding</button>
@@ -6865,8 +7257,8 @@
                             </div>
                         </div>
                         <div class="holding-actions">
-                            <button class="btn-icon" onclick="openEditModal(${index})" title="Edit">✏️</button>
-                            <button class="btn-icon delete" onclick="deleteHolding(${index})" title="Delete">🗑️</button>
+                            <button class="btn-icon" onclick="openEditModal(${index})" title="Edit">??</button>
+                            <button class="btn-icon delete" onclick="deleteHolding(${index})" title="Delete">???</button>
                         </div>
                     </div>
                 `;
@@ -6933,7 +7325,7 @@
             if (transactions.length === 0) {
                 transactionsList.innerHTML = `
                     <div class="empty-state" style="padding: 40px;">
-                        <div style="font-size: 48px; margin-bottom: 16px;">📝</div>
+                        <div style="font-size: 48px; margin-bottom: 16px;">??</div>
                         <h3>No transactions yet</h3>
                         <p>Start tracking your buy and sell transactions</p>
                     </div>
@@ -6962,8 +7354,8 @@
                         <div class="transaction-value">$${totalValue.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
                         <div class="transaction-details">${formattedDate}</div>
                         <div class="transaction-actions">
-                            <button class="btn-icon" onclick="editTransaction(${actualIndex})" title="Edit">✏️</button>
-                            <button class="btn-icon delete" onclick="deleteTransaction(${actualIndex})" title="Delete">🗑️</button>
+                            <button class="btn-icon" onclick="editTransaction(${actualIndex})" title="Edit">??</button>
+                            <button class="btn-icon delete" onclick="deleteTransaction(${actualIndex})" title="Delete">???</button>
                         </div>
                     </div>
                 `;
@@ -7098,7 +7490,7 @@
                 // Simulate portfolio growth/decline with some randomness
                 const dayProgress = (daysCount - i) / daysCount;
                 const baseValue = currentValue * (0.85 + dayProgress * 0.15); // Start at 85% of current
-                const randomVariation = (Math.random() - 0.5) * 0.05; // ±2.5% daily variation
+                const randomVariation = (Math.random() - 0.5) * 0.05; // ?2.5% daily variation
                 const value = baseValue * (1 + randomVariation);
                 
                 history.push({
@@ -7421,7 +7813,7 @@
                                     <div class="sector-bar">
                                         <div class="sector-bar-fill" style="width: ${percent}%;"></div>
                                     </div>
-                                    <div class="sector-percent">${percent.toFixed(1)}% • $${sectorValues[sector].toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
+                                    <div class="sector-percent">${percent.toFixed(1)}% ? $${sectorValues[sector].toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</div>
                                 </div>
                             </div>
                         `;
@@ -8090,8 +8482,484 @@
             }, 300000); // 5 minutes
         });
 
-        console.log('✅ F.R.I.D.A.Y. Dashboard Loaded with Company Logos via Clearbit API');
-        console.log('✅ Portfolio Management System Initialized');
+        console.log('? F.R.I.D.A.Y. Dashboard Loaded with Company Logos via Clearbit API');
+        console.log('? Portfolio Management System Initialized');
     </script>
+
+    <!-- Stock Analysis Modal -->
+    <div class="stock-analysis-modal" id="stockAnalysisModal">
+        <div class="analysis-modal-content">
+            <div class="analysis-modal-header">
+                <div class="analysis-header-left">
+                    <img src="" alt="" class="analysis-stock-icon" id="analysisStockIcon">
+                    <div class="analysis-stock-info">
+                        <h2 id="analysisStockSymbol">Analysis</h2>
+                        <div class="analysis-stock-price">
+                            <span class="analysis-price-value" id="analysisStockPrice">$0.00</span>
+                            <span class="analysis-price-change positive" id="analysisStockChange">+0.00%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="analysis-header-right">
+                    <span class="analysis-timestamp" id="analysisTimestamp">Generated at 1:52 PM</span>
+                    <button class="analysis-close-btn" id="analysisCloseBtn">?</button>
+                </div>
+            </div>
+            
+            <div class="analysis-modal-body">
+                <div class="analysis-left-panel">
+                    <div class="analysis-charts">
+                        <div class="analysis-chart-container">
+                            <div class="analysis-chart-title">Price Chart</div>
+                            <canvas id="analysisMainChart" style="width: 100%; height: 180px;"></canvas>
+                        </div>
+                        
+                        <div class="analysis-chart-container">
+                            <div class="analysis-chart-title">Volume</div>
+                            <canvas id="analysisVolumeChart" style="width: 100%; height: 100px;"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="analysis-metrics">
+                        <div class="analysis-metric-item">
+                            <span class="analysis-metric-label">Last price</span>
+                            <span class="analysis-metric-value" id="metricLastPrice">$0.00</span>
+                        </div>
+                        <div class="analysis-metric-item">
+                            <span class="analysis-metric-label">High on Jan 2 '25</span>
+                            <span class="analysis-metric-value positive" id="metricHigh">$0.00</span>
+                        </div>
+                        <div class="analysis-metric-item">
+                            <span class="analysis-metric-label">Low on Jan 5 '25</span>
+                            <span class="analysis-metric-value negative" id="metricLow">$0.00</span>
+                        </div>
+                        <div class="analysis-metric-item">
+                            <span class="analysis-metric-label">Average</span>
+                            <span class="analysis-metric-value" id="metricAverage">$0.00</span>
+                        </div>
+                        <div class="analysis-metric-item">
+                            <span class="analysis-metric-label">Volume</span>
+                            <span class="analysis-metric-value" id="metricVolume">0</span>
+                        </div>
+                        <div class="analysis-metric-item">
+                            <span class="analysis-metric-label">SMA (50)</span>
+                            <span class="analysis-metric-value" id="metricSMA50">0</span>
+                        </div>
+                        <div class="analysis-metric-item">
+                            <span class="analysis-metric-label">SMA (200)</span>
+                            <span class="analysis-metric-value" id="metricSMA200">0</span>
+                        </div>
+                        <div class="analysis-metric-item">
+                            <span class="analysis-metric-label">Market cap</span>
+                            <span class="analysis-metric-value" id="metricMarketCap">$0</span>
+                        </div>
+                        <div class="analysis-metric-item">
+                            <span class="analysis-metric-label">EPS (TTM)</span>
+                            <span class="analysis-metric-value" id="metricEPS">0.00</span>
+                        </div>
+                        <div class="analysis-metric-item">
+                            <span class="analysis-metric-label">P/E ratio (TTM)</span>
+                            <span class="analysis-metric-value" id="metricPE">0.00</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="analysis-right-panel">
+                    <div class="analysis-tabs">
+                        <button class="analysis-tab active" data-tab="fundamentals">Fundamentals</button>
+                        <button class="analysis-tab" data-tab="sec">SEC filings</button>
+                    </div>
+                    
+                    <div class="analysis-tab-content active" id="fundamentals">
+                        <div class="analysis-section">
+                            <h3 class="analysis-section-title">Company summary</h3>
+                            <div class="analysis-section-content" id="analysisCompanyDescription">
+                                <p>Company description will appear here.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="analysis-section">
+                            <h3 class="analysis-section-title">Financial health</h3>
+                            <div class="analysis-section-content" id="analysisFinancialHealth">
+                                <p>Financial health information will appear here.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="analysis-section">
+                            <h3 class="analysis-section-title">Risks and challenges</h3>
+                            <div class="analysis-section-content" id="analysisRisks">
+                                <p>Risk analysis will appear here.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="analysis-sources">
+                            <h3 class="analysis-section-title">Sources</h3>
+                            <div class="analysis-source-item">
+                                <div class="analysis-source-left">
+                                    <div class="analysis-source-name">10-K filing</div>
+                                    <div class="analysis-source-desc">FY4 quarter '25</div>
+                                </div>
+                                <a href="#" class="analysis-source-link">View</a>
+                            </div>
+                            <div class="analysis-source-item">
+                                <div class="analysis-source-left">
+                                    <div class="analysis-source-name">Financial Statements</div>
+                                    <div class="analysis-source-desc">1K quarter '25</div>
+                                </div>
+                                <a href="#" class="analysis-source-link">View</a>
+                            </div>
+                            <div class="analysis-source-item">
+                                <div class="analysis-source-left">
+                                    <div class="analysis-source-name">Analyst Estimates</div>
+                                    <div class="analysis-source-desc">38 analysts</div>
+                                </div>
+                                <a href="#" class="analysis-source-link">View</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="analysis-tab-content" id="sec">
+                        <div class="analysis-section">
+                            <h3 class="analysis-section-title">Recent SEC Filings</h3>
+                            <div class="analysis-section-content">
+                                <p>SEC filing information would be displayed here.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="analysis-action-buttons">
+                <button class="analysis-action-btn" title="Home">??</button>
+                <button class="analysis-action-btn" title="Chart">??</button>
+                <button class="analysis-action-btn" title="Export">??</button>
+                <button class="analysis-action-btn" title="Share">??</button>
+                <button class="analysis-action-btn" title="Bookmark">??</button>
+                <button class="analysis-action-btn" title="Search">??</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Stock Analysis Modal JavaScript
+        (function() {
+            const stockAnalysisModal = document.getElementById('stockAnalysisModal');
+            const analysisCloseBtn = document.getElementById('analysisCloseBtn');
+
+            // Stock data for different symbols
+            const stockData = {
+                'SNAP': {
+                    name: 'Snap Inc.',
+                    price: '$7.81',
+                    change: '+0.90%',
+                    changeClass: 'positive',
+                    description: 'Snap Inc. is a technology company focused on camera products and social media platforms. Their flagship product, Snapchat, is a multimedia messaging app used globally by millions of users daily.',
+                    financialHealth: 'Snap has shown improving financial metrics with revenue growth driven by advertising innovation. The company has been working towards profitability while investing in AR technology and expanding its user base globally.',
+                    risks: 'Competition from larger social media platforms remains intense. User growth challenges and dependence on advertising revenue create volatility in financial performance.',
+                    metrics: {
+                        lastPrice: '$7.81',
+                        high: '$8.42',
+                        low: '$6.71',
+                        average: '$7.45',
+                        volume: '21.3M',
+                        sma50: '$7.52',
+                        sma200: '$7.89',
+                        marketCap: '$12.4B',
+                        eps: '-0.48',
+                        pe: 'N/A'
+                    }
+                },
+                'AAPL': {
+                    name: 'Apple Inc.',
+                    price: '$271.54',
+                    change: '+0.68%',
+                    changeClass: 'positive',
+                    description: 'Apple Inc. designs, manufactures, and markets smartphones, personal computers, tablets, wearables, and accessories worldwide. They also provide various services including digital content and cloud services.',
+                    financialHealth: 'Apple maintains exceptional financial health with strong cash flow generation, robust profit margins, and a loyal customer ecosystem. The company demonstrates consistent revenue growth across product and services segments.',
+                    risks: 'Supply chain dependencies, regulatory pressures in various markets, and market saturation in developed economies pose ongoing challenges. Competition in the smartphone market continues to intensify.',
+                    metrics: {
+                        lastPrice: '$271.54',
+                        high: '$275.21',
+                        low: '$265.41',
+                        average: '$270.15',
+                        volume: '48.2M',
+                        sma50: '$268.44',
+                        sma200: '$265.89',
+                        marketCap: '$4.2T',
+                        eps: '6.42',
+                        pe: '42.31'
+                    }
+                },
+                'TSLA': {
+                    name: 'Tesla, Inc.',
+                    price: '$444.61',
+                    change: '-3.66%',
+                    changeClass: 'negative',
+                    description: 'Tesla, Inc. designs, develops, manufactures, and sells electric vehicles and energy generation and storage systems. They also provide vehicle service centers, supercharger stations, and self-driving capability.',
+                    financialHealth: 'Tesla has achieved profitability with growing vehicle deliveries and expanding production capacity. The company continues to invest heavily in manufacturing, battery technology, and autonomous driving capabilities.',
+                    risks: 'Intense competition in the EV market, regulatory challenges, production scaling issues, and dependence on key executives create uncertainty. Supply chain constraints and raw material costs impact margins.',
+                    metrics: {
+                        lastPrice: '$444.61',
+                        high: '$465.21',
+                        low: '$440.41',
+                        average: '$452.89',
+                        volume: '91.8M',
+                        sma50: '$458.52',
+                        sma200: '$445.21',
+                        marketCap: '$1.4T',
+                        eps: '3.12',
+                        pe: '142.50'
+                    }
+                },
+                'NFLX': {
+                    name: 'Netflix, Inc.',
+                    price: '$1,098.41',
+                    change: '-0.18%',
+                    changeClass: 'negative',
+                    description: 'Netflix, Inc. provides entertainment services through streaming platform. They produce, acquire, and distribute content including series, documentaries, and feature films across multiple genres and languages.',
+                    financialHealth: 'Netflix demonstrates strong subscriber growth and improving profitability metrics. Content investment remains high as the company competes for market share in the global streaming market.',
+                    risks: 'Intense competition from established media companies launching streaming services, content cost inflation, and market saturation in developed regions present ongoing challenges.',
+                    metrics: {
+                        lastPrice: '$1,098.41',
+                        high: '$1,112.54',
+                        low: '$1,085.21',
+                        average: '$1,098.89',
+                        volume: '18.4M',
+                        sma50: '$1,095.42',
+                        sma200: '$1,088.67',
+                        marketCap: '$472B',
+                        eps: '19.04',
+                        pe: '57.68'
+                    }
+                },
+                'BTC': {
+                    name: 'Bitcoin',
+                    price: '$102,458',
+                    change: '+3.00%',
+                    changeClass: 'positive',
+                    description: 'Bitcoin is a decentralized digital currency that can be transferred on the peer-to-peer bitcoin network. Transactions are verified by network nodes through cryptography and recorded in a public distributed ledger called a blockchain.',
+                    financialHealth: 'Bitcoin continues to gain institutional acceptance with growing adoption as digital gold. Network security remains strong with increasing hash rate and widespread mining distribution.',
+                    risks: 'Regulatory uncertainty across jurisdictions, environmental concerns regarding energy consumption, and competition from alternative cryptocurrencies present ongoing challenges to adoption and valuation.',
+                    metrics: {
+                        lastPrice: '$102,458',
+                        high: '$105,241',
+                        low: '$99,871',
+                        average: '$102,315',
+                        volume: '$45.2B',
+                        sma50: '$98,452',
+                        sma200: '$95,289',
+                        marketCap: '$2.0T',
+                        eps: 'N/A',
+                        pe: 'N/A'
+                    }
+                },
+                'ETH': {
+                    name: 'Ethereum',
+                    price: '$3,842',
+                    change: '+2.50%',
+                    changeClass: 'positive',
+                    description: 'Ethereum is a decentralized, open-source blockchain featuring smart contract functionality. Ether is the native cryptocurrency of the platform and is the second-largest cryptocurrency by market capitalization.',
+                    financialHealth: 'Ethereum maintains strong network activity with growing DeFi and NFT ecosystems. The transition to proof-of-stake has improved energy efficiency and network economics.',
+                    risks: 'Competition from alternative layer-1 blockchains, scalability challenges, and regulatory uncertainty around DeFi applications present ongoing challenges to growth and adoption.',
+                    metrics: {
+                        lastPrice: '$3,842',
+                        high: '$3,921',
+                        low: '$3,754',
+                        average: '$3,835',
+                        volume: '$28.1B',
+                        sma50: '$3,712',
+                        sma200: '$3,589',
+                        marketCap: '$462B',
+                        eps: 'N/A',
+                        pe: 'N/A'
+                    }
+                }
+            };
+
+            // Function to open analysis modal
+            window.openStockAnalysis = function(symbol, iconSrc) {
+                const data = stockData[symbol];
+                if (!data) return;
+
+                // Update header information
+                document.getElementById('analysisStockSymbol').textContent = symbol + ' Analysis';
+                document.getElementById('analysisStockPrice').textContent = data.price;
+                const changeEl = document.getElementById('analysisStockChange');
+                changeEl.textContent = data.change;
+                changeEl.className = 'analysis-price-change ' + data.changeClass;
+                
+                // Update icon
+                const iconEl = document.getElementById('analysisStockIcon');
+                iconEl.src = iconSrc || '';
+                iconEl.alt = symbol;
+                
+                // Update timestamp
+                const now = new Date();
+                const timeStr = now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
+                document.getElementById('analysisTimestamp').textContent = 'Generated at ' + timeStr;
+                
+                // Update metrics
+                document.getElementById('metricLastPrice').textContent = data.metrics.lastPrice;
+                document.getElementById('metricHigh').textContent = data.metrics.high;
+                document.getElementById('metricLow').textContent = data.metrics.low;
+                document.getElementById('metricAverage').textContent = data.metrics.average;
+                document.getElementById('metricVolume').textContent = data.metrics.volume;
+                document.getElementById('metricSMA50').textContent = data.metrics.sma50;
+                document.getElementById('metricSMA200').textContent = data.metrics.sma200;
+                document.getElementById('metricMarketCap').textContent = data.metrics.marketCap;
+                document.getElementById('metricEPS').textContent = data.metrics.eps;
+                document.getElementById('metricPE').textContent = data.metrics.pe;
+                
+                // Update content sections
+                document.getElementById('analysisCompanyDescription').innerHTML = '<p>' + data.description + '</p>';
+                document.getElementById('analysisFinancialHealth').innerHTML = '<p>' + data.financialHealth + '</p>';
+                document.getElementById('analysisRisks').innerHTML = '<p>' + data.risks + '</p>';
+                
+                // Create charts
+                createAnalysisCharts();
+                
+                // Show modal
+                stockAnalysisModal.classList.add('active');
+            };
+
+            // Function to close modal
+            function closeStockAnalysis() {
+                stockAnalysisModal.classList.remove('active');
+            }
+
+            // Close button click
+            analysisCloseBtn.addEventListener('click', closeStockAnalysis);
+
+            // Close on background click
+            stockAnalysisModal.addEventListener('click', function(e) {
+                if (e.target === stockAnalysisModal) {
+                    closeStockAnalysis();
+                }
+            });
+
+            // Close on Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && stockAnalysisModal.classList.contains('active')) {
+                    closeStockAnalysis();
+                }
+            });
+
+            // Add click handlers to all watchlist items
+            setTimeout(function() {
+                const watchlistItems = document.querySelectorAll('.watchlist-item');
+                watchlistItems.forEach(function(item) {
+                    item.addEventListener('click', function() {
+                        const symbol = this.querySelector('.watchlist-symbol').textContent;
+                        const iconSrc = this.querySelector('.watchlist-icon').src;
+                        openStockAnalysis(symbol, iconSrc);
+                    });
+                });
+            }, 500);
+
+            // Tab switching
+            const analysisTabs = document.querySelectorAll('.analysis-tab');
+            analysisTabs.forEach(function(tab) {
+                tab.addEventListener('click', function() {
+                    const targetTab = this.getAttribute('data-tab');
+                    
+                    // Remove active class from all tabs and contents
+                    analysisTabs.forEach(function(t) { t.classList.remove('active'); });
+                    document.querySelectorAll('.analysis-tab-content').forEach(function(c) { c.classList.remove('active'); });
+                    
+                    // Add active class to clicked tab and corresponding content
+                    this.classList.add('active');
+                    document.getElementById(targetTab).classList.add('active');
+                });
+            });
+
+            // Function to create charts
+            function createAnalysisCharts() {
+                if (typeof Chart === 'undefined') return;
+
+                // Destroy existing charts if they exist
+                if (window.analysisMainChart) window.analysisMainChart.destroy();
+                if (window.analysisVolumeChart) window.analysisVolumeChart.destroy();
+
+                // Generate sample data
+                const labels = [];
+                const priceData = [];
+                const volumeData = [];
+                const basePrice = 100;
+                const baseVolume = 1000000;
+
+                for (let i = 0; i < 30; i++) {
+                    labels.push('');
+                    priceData.push(basePrice + Math.random() * 50 - 25 + i * 0.5);
+                    volumeData.push(baseVolume + Math.random() * 500000);
+                }
+
+                // Main price chart
+                const mainCtx = document.getElementById('analysisMainChart').getContext('2d');
+                window.analysisMainChart = new Chart(mainCtx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Price',
+                            data: priceData,
+                            borderColor: '#FFFFFF',
+                            backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                            borderWidth: 2,
+                            fill: true,
+                            tension: 0.4,
+                            pointRadius: 0
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false }
+                        },
+                        scales: {
+                            x: { display: false },
+                            y: { 
+                                display: true,
+                                grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                                ticks: { color: '#9A9AA1', font: { size: 10 } }
+                            }
+                        }
+                    }
+                });
+
+                // Volume chart
+                const volumeCtx = document.getElementById('analysisVolumeChart').getContext('2d');
+                window.analysisVolumeChart = new Chart(volumeCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Volume',
+                            data: volumeData,
+                            backgroundColor: 'rgba(255, 255, 255, 0.3)',
+                            borderColor: 'rgba(255, 255, 255, 0.5)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false }
+                        },
+                        scales: {
+                            x: { display: false },
+                            y: { 
+                                display: true,
+                                grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                                ticks: { color: '#9A9AA1', font: { size: 10 } }
+                            }
+                        }
+                    }
+                });
+            }
+        })();
+    </script>
+
 </body>
 </html>
